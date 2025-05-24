@@ -69,8 +69,8 @@ def split_range_into_pages(
     top_row = rng.row
     left_col = rng.column
     for (r0, r1) in pages:
-        start_cell = sht.cells[top_row + r0, left_col]
-        end_cell   = sht.cells[top_row + r1, left_col + rng.columns.count - 1]
+        start_cell = sht.cells[top_row - 1 + r0, left_col - 1]
+        end_cell   = sht.cells[top_row - 1 + r1, left_col - 1 + rng.columns.count - 1]
         page_ranges.append(f"{start_cell.address}:{end_cell.address}")
     
     wb.close()
@@ -80,7 +80,7 @@ def split_range_into_pages(
 # Example usage:
 if __name__ == "__main__":
     pages = split_range_into_pages(
-        file_path="C:/Users/t9omoto\Repos/pdf_to_clipboard/Itut 7A Well Completions Schematic.xls",
+        file_path="./Itut 7A Well Completions Schematic.xls",
         sheet_name="Completion String",
         range_address="B2:AD88",
         orientation="landscape"
